@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>Poof — Make app icons for iOS and Android</title>
+    <meta
+      name="description"
+      content="Create app icons for iOS and Android from your own artwork. Try plush and 3D styles, preview layouts instantly, and download PNGs. Open source."
+    />
+    <meta
+      property="og:title"
+      content="Poof — Make app icons for iOS and Android"
+    />
+    <meta
+      property="og:description"
+      content="Upload your artwork. Create an icon style. Preview six layouts and download your app icons. Use your own API key or Codex."
+    />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/exports.css" />
+    <link rel="stylesheet" href="/css/plush.css" />
+    <script type="module" src="/js/app.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <a class="wordmark" href="#" aria-label="Poof home">poof<span>.</span></a>
+      <nav class="view-nav" aria-label="Workspace">
+        <a href="#" id="builder-link" aria-current="page">Builder</a
+        ><a href="#studio" id="studio-link">Customize</a>
+      </nav>
+      <div class="header-actions">
+        <a
+          href="https://github.com/sanjaikuttyy/poof"
+          target="_blank"
+          rel="noopener"
+          class="github-link"
+          >GitHub ↗</a
+        ><button class="connection-button" id="connection-button">
+          <span class="connection-label">Connect AI</span
+          ><span class="dot" aria-hidden="true"></span>
+        </button>
+      </div>
+    </header>
+    <main>
+      <div id="server-offline" class="server-offline" role="status" hidden>
+        <span
+          ><strong>AI server is offline.</strong> Run <code>npm start</code> in
+          the poof folder and keep the terminal open. Your loaded artwork,
+          customization and Codex kit still work.</span
+        ><button id="retry-server" class="secondary">Check again</button>
+      </div>
+      <section id="home-view">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">FROM FIRST IDEA TO APP PACKAGE</p>
+            <h1>Make your next<br /><em>app icon.</em></h1>
+            <p class="lede">
+              Upload your artwork. Try plush and 3D styles.<br />Get Xcode,
+              Android and favicon packages.<br />One artwork. Every handoff.
+            </p>
+            <div class="upload" id="drop-zone">
+              <input
+                id="upload"
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                hidden
+              /><button id="upload-button" class="primary">
+                Create my app icon <span>↑</span>
+              </button>
+              <p>PNG, JPG or WebP · up to 10 MB</p>
+            </div>
+            <button class="sample-button" id="try-pogo">
+              Explore Pogo icons <span>→</span>
+            </button>
+            <p class="ownership">
+              Icon packages are free and local.<br />Use your API key or Codex
+              for AI styles.
+            </p>
+          </div>
+          <div class="hero-art" data-framing="center">
+            <div class="art-top">
+              <span class="specimen-label">Pogo <span>/ 001</span></span>
+              <div
+                class="material-switch"
+                role="group"
+                aria-label="Pogo material"
+              >
+                <button data-hero-material="original" aria-pressed="false">
+                  Original</button
+                ><button
+                  data-hero-material="plush"
+                  class="selected"
+                  aria-pressed="true"
+                >
+                  Plush
+                </button>
+              </div>
+            </div>
+            <div class="specimen-floor" aria-hidden="true"></div>
+            <div class="hero-character is-moving">
+              <img
+                class="hero-pogo"
+                id="hero-character"
+                src="/assets/pogo-plush.png"
+                alt="Pogo’s original plush sun character with its cream face and warm brown smile"
+              />
+            </div>
+            <div class="art-bottom">
+              <div class="specimen-note">
+                <span class="material-caption">Plush app icon</span
+                ><span>Pre-made Pogo example</span>
+              </div>
+              <div class="stage-actions">
+                <button
+                  class="stage-button"
+                  id="hero-peek"
+                  aria-pressed="false"
+                >
+                  Try a peek ↗</button
+                ><button
+                  class="motion-button"
+                  id="hero-motion"
+                  aria-label="Pause Pogo motion"
+                  aria-pressed="true"
+                >
+                  Ⅱ
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="how">
+          <div>
+            <span class="step-number">01</span>
+            <p>
+              Upload your artwork.<small
+                >Start with an icon, logo or character.</small
+              >
+            </p>
+          </div>
+          <div>
+            <span class="step-number">02</span>
+            <p>
+              Choose your style.<small
+                >Keep the original, add fur or try 3D.</small
+              >
+            </p>
+          </div>
+          <div>
+            <span class="step-number">03</span>
+            <p>
+              Download your icons.<small
+                >Xcode catalogs, Android resources & favicons.</small
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="builder-view" hidden>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR WORKSPACE</p>
+            <h1 class="page-title">Choose your <em>icon style.</em></h1>
+          </div>
+          <div class="actions">
+            <button id="finish-edit" class="secondary" hidden>
+              Back to results</button
+            ><button id="start-over" class="text-button">Change icon</button>
+          </div>
+        </div>
+        <div class="workbench">
+          <div class="input-panel">
+            <div class="source-preview">
+              <img id="source-image" alt="Your source icon" />
+            </div>
+            <div class="source-meta">
+              <span id="source-name">Your icon</span><span>ORIGINAL</span>
+            </div>
+            <button id="open-customize" class="secondary customize-entry">
+              Customize this image →<small
+                >Left / right peek · size · backgrounds · motion</small
+              >
+            </button>
+            <div
+              id="look-history"
+              aria-label="Your looks in this session"
+            ></div>
+          </div>
+          <div class="make-panel">
+            <h2>Create a style<br /><em>for your app.</em></h2>
+            <div class="mode-options" role="group" aria-label="Transformation">
+              <button class="mode selected" data-mode="fur" aria-pressed="true">
+                <strong>Keep my identity</strong
+                ><span>Preserve your shape, colors and face.</span></button
+              ><button class="mode" data-mode="mascot" aria-pressed="false">
+                <strong>Imagine a mascot</strong
+                ><span>A new character inspired by it.</span>
+              </button>
+            </div>
+            <button id="generate" class="primary">
+              Make it fluffy <span>→</span></button
+            ><button id="cancel" class="text-button" hidden>
+              Cancel generation
+            </button>
+            <p class="fine" id="generation-note">
+              One image request to your OpenAI account. Layouts are made here,
+              for free.
+            </p>
+            <button id="codex-shortcut" class="text-button">
+              Use my Codex instead ↗
+            </button>
+            <div class="import-row">
+              <span>Already made it in Codex?</span>
+              <button id="import-result" class="text-button">
+                Import result</button
+              ><input
+                type="file"
+                id="result-upload"
+                accept="image/png,image/webp,image/jpeg"
+                hidden
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="results-view" hidden>
+        <div class="result-source-strip">
+          <div class="result-source-info">
+            <img id="result-source-thumb" alt="Original uploaded icon" />
+            <div>
+              <strong id="result-source-name">Your icon</strong
+              ><span>Original artwork</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="secondary" id="results-edit">Try another look</button
+            ><button class="text-button" id="results-change">
+              Change icon
+            </button>
+          </div>
+        </div>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" id="result-label">YOUR NEW LOOK</p>
+            <h2>Your icon. <em>Six layouts.</em></h2>
+            <p class="fine">
+              Compare six layouts from one image. Previews move; app PNGs stay
+              still.
+            </p>
+          </div>
+          <div class="actions">
+            <button class="secondary" id="gallery-motion" aria-pressed="true">
+              Pause previews</button
+            ><button class="secondary" id="share-card">Before + after ↗</button
+            ><button class="primary compact" id="download-all">
+              Six previews ↓
+            </button>
+          </div>
+        </div>
+        <div class="ship-banner">
+          <div>
+            <strong>Pick a favorite. Ship it everywhere.</strong>
+            <p>
+              Choose “Get package” on any layout for Xcode catalogs, Android
+              resources and web icons.
+            </p>
+          </div>
+          <a href="#studio" class="secondary">Customize framing & color ↗</a>
+        </div>
+        <div id="results-grid" class="results-grid"></div>
+        <div class="results-footer">
+          <button class="text-button" id="download-cutout">
+            Download character PNG ↓</button
+          ><a href="#studio" class="studio-cta"
+            >Customize
+            <span>Left / right peek, color, motion & more ↗</span></a
+          >
+        </div>
+      </section>
+      <section id="studio-view" hidden>
+        <div class="section-heading studio-heading">
+          <div>
+            <p class="eyebrow">POOF STUDIO</p>
+            <h1 class="page-title">Customize your <em>app icon.</em></h1>
+          </div>
+          <div class="actions">
+            <button type="button" class="primary compact" id="studio-package">
+              Get app package →
+            </button>
+            <button type="button" class="secondary" id="studio-download">
+              Download PNG ↓</button
+            ><button type="button" class="secondary" id="svg-download">
+              SVG ↓
+            </button>
+          </div>
+        </div>
+        <div class="studio-layout">
+          <div class="studio-stage">
+            <div
+              class="layout-shortcuts"
+              role="group"
+              aria-label="Icon framing"
+            >
+              <button data-layout="center" aria-pressed="true">Center</button
+              ><button data-layout="left" aria-pressed="false">Left peek</button
+              ><button data-layout="right" aria-pressed="false">
+                Right peek</button
+              ><button data-layout="rise" aria-pressed="false">
+                Bottom peek
+              </button>
+            </div>
+            <div id="studio-preview"></div>
+            <div class="size-strip" id="size-strip"></div>
+            <p class="fine">
+              Rounded preview · PNG exports have square, opaque edges.
+            </p>
+          </div>
+          <form id="controls" class="controls">
+            <div class="inspector-heading">
+              <span>Fine-tune</span><span>POOF STUDIO</span>
+            </div>
+            <fieldset>
+              <legend>Character</legend>
+              <label
+                >Composition<select name="layout">
+                  <option value="center">Front and center</option>
+                  <option value="left">Peeking from the left</option>
+                  <option value="right">Peeking from the right</option>
+                  <option value="rise">Just waking up</option>
+                </select></label
+              ><label
+                >Character size <output id="scale-value">100%</output
+                ><input
+                  name="scale"
+                  type="range"
+                  min="65"
+                  max="135"
+                  value="100"
+              /></label>
+            </fieldset>
+            <fieldset>
+              <legend>Appearance</legend>
+              <label
+                >Background<input
+                  type="color"
+                  name="color"
+                  value="#b3a7d6" /></label
+              ><label class="check"
+                >Soft gradient<input type="checkbox" name="gradient" /></label
+              ><label
+                >Occasion<select name="occasion">
+                  <option value="none">Everyday</option>
+                  <option value="christmas">Christmas</option>
+                  <option value="birthday">Birthday</option>
+                  <option value="valentine">Valentine’s Day</option>
+                  <option value="halloween">Halloween</option>
+                </select></label
+              ><label
+                >Motion preview<select name="motion">
+                  <option value="none">Still</option>
+                  <option value="breathe">Breathe</option>
+                  <option value="peek">Peek</option>
+                  <option value="bounce">Bounce</option>
+                </select></label
+              >
+              <p class="fine">
+                Motion exports as an animated SVG for the web. Store PNGs stay
+                still.
+              </p>
+            </fieldset>
+            <fieldset>
+              <legend>Export</legend>
+              <label
+                >PNG size<select name="size">
+                  <option value="1024">1024 · Icon master</option>
+                  <option value="512">512 · Android listing</option>
+                  <option value="180">180 · Apple touch icon</option>
+                  <option value="64">64 · Small icon</option>
+                  <option value="32">32 · Favicon</option>
+                  <option value="16">16 · Favicon</option>
+                </select></label
+              >
+              <div class="actions">
+                <button type="button" class="text-button" id="recipe-download">
+                  Save recipe</button
+                ><button type="button" class="text-button" id="recipe-import">
+                  Load recipe</button
+                ><input
+                  type="file"
+                  id="recipe-file"
+                  accept="application/json,.json"
+                  hidden
+                />
+              </div>
+            </fieldset>
+            <details>
+              <summary>Try another material</summary>
+              <p class="fine">
+                Creates a new image with your connection. The source stays the
+                same.
+              </p>
+              <button type="button" class="secondary" id="make-clay">
+                Make it smooth 3D</button
+              ><button type="button" class="text-button" id="use-original">
+                Use original artwork
+              </button>
+            </details>
+          </form>
+        </div>
+      </section>
+      <p id="status" role="status" aria-live="polite" hidden></p>
+    </main>
+    <footer>
+      <a class="wordmark small" href="#">poof<span>.</span></a>
+      <p>Open-source app icon builder.</p>
+      <a
+        href="https://github.com/sanjaikuttyy/poof"
+        target="_blank"
+        rel="noopener"
+        >Open source. Make it yours ↗</a
+      >
+    </footer>
+    <dialog id="connection">
+      <form method="dialog">
+        <button class="close" aria-label="Close connection settings">×</button>
+      </form>
+      <p class="eyebrow">BRING YOUR OWN AI</p>
+      <h2>Connect your AI.<br /><em>Create your icons.</em></h2>
+      <div class="tabs" role="group" aria-label="Connection method">
+        <button id="api-tab" class="selected" aria-pressed="true">
+          OpenAI API key</button
+        ><button id="codex-tab" aria-pressed="false">My Codex</button>
+      </div>
+      <div id="api-panel">
+        <p id="connection-server-offline" class="server-offline" hidden>
+          Start Poof with <code>npm start</code> before generating.
+          Customization and Codex kits work locally.
+        </p>
+        <label class="field-label" for="api-key">API key</label
+        ><input
+          id="api-key"
+          type="password"
+          placeholder="sk-…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <p class="fine">
+          Kept in memory for this tab. Never saved. Your image and key are sent
+          to OpenAI through the local Poof server when you generate.
+        </p>
+        <button id="save-key" class="primary">Connect key →</button
+        ><button id="forget-key" class="text-button">Forget key</button>
+        <p class="fine">
+          Image generation is billed to your API account.
+          <a
+            href="https://platform.openai.com/api-keys"
+            target="_blank"
+            rel="noopener"
+            >Get an API key ↗</a
+          >
+        </p>
+      </div>
+      <div id="codex-panel" hidden>
+        <ol>
+          <li>Open a kit with your artwork, settings and Poof skill in Codex.</li>
+          <li>Paste the copied request into a new chat and send it.</li>
+          <li>Import the generated PNG here to get every layout.</li>
+        </ol>
+        <details class="codex-prompt-details">
+          <summary>Review the generation prompt</summary>
+          <pre id="codex-prompt"></pre>
+        </details>
+        <button id="open-codex" class="primary">Open in Codex ↗</button>
+        <p class="fine">Opens the installed desktop app on macOS. Your kit is saved in Poof’s exports/codex folder. Generation starts only after you send the request in Codex.</p>
+        <button id="download-kit" class="secondary">Prepare Codex kit ↓</button
+        ><a id="save-kit" class="primary" download="poof-codex-kit.zip" hidden
+          >Save Codex kit ZIP ↓</a
+        ><button id="copy-prompt" class="text-button">
+          Copy the prompt ↗
+        </button>
+        <p class="fine">
+          Uses your own Codex access and its available image-generation tools.
+          No API key is included. On other platforms, download and unzip the kit, open its folder in Codex, then use PROMPT.md.
+        </p>
+      </div>
+      <p id="connection-status" role="status" class="fine"></p>
+    </dialog>
+  </body>
+</html>

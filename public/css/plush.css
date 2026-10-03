@@ -1,0 +1,351 @@
+.plush-playground {
+  display: grid;
+  gap: 20px;
+  margin: 22px 0;
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+.plush-original-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.plush-original-row strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.plush-original-row > div > span {
+  display: block;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-2);
+  margin-top: 4px;
+  max-width: 230px;
+}
+.plush-original {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface-3);
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 15px;
+  min-height: 44px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+.plush-original:hover:not(:disabled) {
+  background: #343439;
+}
+.plush-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.plush-fieldset legend {
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.plush-segments {
+  display: flex;
+  background: var(--surface-3);
+  padding: 4px;
+  border-radius: 999px;
+  gap: 4px;
+}
+.plush-segments button {
+  flex: 1;
+  min-width: 0;
+  min-height: 40px;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 12px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 600;
+}
+.plush-segments button:hover:not([aria-pressed="true"]):not(:disabled) {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+}
+.plush-segments button[aria-pressed="true"],
+.plush-textures button[aria-pressed="true"] {
+  background: #fff;
+  color: var(--ink);
+}
+.plush-textures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.plush-textures button {
+  min-height: 68px;
+  padding: 12px 8px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--surface-3);
+  color: var(--text);
+  text-align: center;
+}
+.plush-textures button strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.plush-textures button span {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+.plush-textures button[aria-pressed="true"] span {
+  color: #55545a;
+}
+.plush-direction summary {
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-2);
+  min-height: 32px;
+}
+.plush-direction summary > span {
+  font-size: 11px;
+  margin-left: 8px;
+  color: var(--text-2);
+}
+.plush-direction label {
+  display: block;
+  font-size: 12px;
+  margin: 14px 0 9px;
+}
+.plush-direction textarea {
+  display: block;
+  width: 100%;
+  resize: vertical;
+  min-height: 86px;
+  max-height: 240px;
+  background: var(--surface-3);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 12px;
+  padding: 12px;
+  color: var(--text);
+  font: 400 12px/1.65 var(--font-sans);
+  box-sizing: border-box;
+}
+.plush-direction textarea::placeholder {
+  color: var(--text-2);
+}
+.plush-direction textarea:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+.plush-direction p,
+.plush-render-note,
+.plush-error {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-2);
+  margin: 0;
+}
+.plush-direction p {
+  margin-top: 8px;
+}
+.plush-error {
+  padding: 12px;
+  background: var(--surface-3);
+  border-radius: 12px;
+  color: var(--text);
+}
+.plush-playground button:disabled,
+.plush-playground textarea:disabled {
+  opacity: 0.45;
+  cursor: wait;
+}
+@media (max-width: 380px) {
+  .plush-original-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .plush-original-row > div > span {
+    max-width: none;
+  }
+  .plush-textures button span {
+    font-size: 10px;
+  }
+}
+#look-history {
+  padding: 18px 24px 24px;
+}
+#look-history:empty {
+  display: none;
+}
+#look-history p {
+  font-size: 11px;
+  color: var(--text-2);
+  margin: 0 0 12px;
+}
+#look-history button {
+  padding: 4px;
+  margin: 0 8px 8px 0;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+#look-history img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  display: block;
+}
+/* Keep the main action within reach on a desktop workspace. */
+.make-panel > h2 {
+  display: none;
+}
+.make-panel .mode-options {
+  margin: 0 0 16px;
+}
+.plush-playground {
+  gap: 14px;
+  margin: 16px 0;
+}
+.plush-original-row {
+  padding: 12px 0;
+}
+.plush-fieldset legend {
+  margin-bottom: 8px;
+}
+.plush-render-note {
+  font-size: 11px;
+}
+@media (min-width: 1000px) {
+  .input-panel {
+    align-self: start;
+    position: sticky;
+    top: 24px;
+  }
+}
+.source-preview {
+  position: relative;
+  height: auto;
+  aspect-ratio: 4/3;
+  min-height: 0;
+  display: block;
+}
+.source-preview img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+#look-history {
+  padding: 20px 0 0;
+}
+.codex-prompt-details summary {
+  font-size: 12px;
+  color: var(--text-2);
+  cursor: pointer;
+  margin: 18px 0;
+}
+#codex-prompt {
+  font: 11px/1.7 var(--font-sans);
+  white-space: pre-wrap;
+  max-height: 220px;
+  overflow: auto;
+  background: var(--surface-2);
+  padding: 14px;
+  border-radius: 12px;
+  color: var(--text-2);
+}
+.customize-entry {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  margin-top: 24px;
+  width: 100%;
+  padding: 16px;
+}
+.customize-entry small {
+  font-size: 10px;
+  color: var(--text-2);
+  font-weight: 400;
+}
+.layout-shortcuts {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--surface-3);
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 24px;
+}
+.layout-shortcuts button {
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  font-size: 12px;
+  padding: 12px 17px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.layout-shortcuts button[aria-pressed="true"] {
+  background: white;
+  color: #111;
+}
+.server-offline {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-2);
+  margin: 20px 0;
+}
+.server-offline strong {
+  color: white;
+}
+.server-offline code {
+  color: white;
+}
+.server-offline button {
+  flex: none;
+}
+#save-kit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+@media (max-width: 700px) {
+  .layout-shortcuts button {
+    padding: 10px;
+    font-size: 10px;
+  }
+  .server-offline {
+    align-items: start;
+    flex-direction: column;
+  }
+}

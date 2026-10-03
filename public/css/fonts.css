@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fonts/mulish-normal-400.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/fonts/mulish-normal-600.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/assets/fonts/mulish-normal-700.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fonts/newsreader-italic-400.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fonts/newsreader-normal-400.ttf) format("truetype");
+}
